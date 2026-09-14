@@ -4,13 +4,13 @@
 module.exports = {
   title: 'Swiftpedia',
   tagline: 'A local knowledge base for Swift 6 + Swift UI development',
-  url: 'https://kartaverse.github.io',
+  url: 'https://Lightfielder.github.io',
   baseUrl: '/Swiftpedia/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
-  organizationName: 'kartaverse',
+  organizationName: 'Lightfielder',
   projectName: 'Swiftpedia',
 
   // Markdown configuration
@@ -38,7 +38,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: 'https://github.com/Kartaverse/Swiftpedia',
+          href: 'https://github.com/Lightfielder/Swiftpedia',
           label: 'GitHub',
           position: 'right',
         },
@@ -53,7 +53,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © 2025-${new Date().getFullYear()} Dover Studios, Inc.`,
+      copyright: `Copyright © 2025-${new Date().getFullYear()} Lightfielder.`,
     },
     prism: {
       theme: require('prism-react-renderer').themes.github,
@@ -67,7 +67,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/Kartaverse/Swiftpedia/',
+          editUrl: 'https://github.com/Lightfielder/Swiftpedia/',
         },
         blog: false,
         theme: {

@@ -18,7 +18,7 @@ Add [NodeJS](https://nodejs.org/en) to your system. Make sure you have the "npm"
 
 Use a git client like [GitKraken](https://www.gitkraken.com/download) or [GitHub Desktop](https://desktop.github.com/download/) to download a local copy of the git repo:  
 
-[https://github.com/Kartaverse/Swiftpedia/](https://github.com/Kartaverse/Swiftpedia/)
+[https://github.com/Lightfielder/Swiftpedia/](https://github.com/Lightfielder/Swiftpedia/)
 
 > Note: The repo is set to a private visibility state during the development stage.
 
