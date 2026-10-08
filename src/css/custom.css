@@ -1,466 +1,652 @@
-/* ============================================================
-   Docusaurus Theme — Adapted from MediaWiki Monobook
-   ============================================================ */
+/**
+ * Swiftpedia global theme.
+ *
+ * Ported from the Kartaverse Vonk Ultra docs site so the two projects read as
+ * one design family: IBM Plex typography, an indigo light theme, a deep
+ * blue-black + gold dark theme, glassy navbar chrome, and a shared card /
+ * table / footer treatment.
+ *
+ * Docusaurus bundles Infima; the tokens and rules below layer the shared look
+ * on top of it. Vonk node-reference-only classes (node badges, connection
+ * chips, per-data-type icon colours) are intentionally not carried over.
+ */
 
-/* ---- Infima Base Variables ---- */
+/* ── Fonts ────────────────────────────────────────────────────────────────
+ * IBM Plex Sans for headings + body, IBM Plex Mono for code/tables/labels.
+ * The two faces share the same design DNA. Loaded via `stylesheets` in
+ * docusaurus.config.js.
+ */
 :root {
-  --ifm-color-primary: #002bb8;
-  --ifm-color-primary-dark: #0027a6;
-  --ifm-color-primary-darker: #002494;
-  --ifm-color-primary-darkest: #001e7a;
-  --ifm-color-primary-light: #0030ca;
-  --ifm-color-primary-lighter: #0033dc;
-  --ifm-color-primary-lightest: #1a47e6;
+  --ifm-font-family-base: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --ifm-font-family-monospace: 'IBM Plex Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --ifm-heading-font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --ifm-code-font-size: 90%;
 
-  --ifm-link-color: #002bb8;
-  --ifm-link-decoration: none;
-  --ifm-link-hover-color: #002bb8;
-  --ifm-link-hover-decoration: underline;
+  /* Brand gold, shared with the Vonk Ultra site. */
+  --sp-gold: #ffcb6b;
 
-  --ifm-code-font-size: 95%;
-  --ifm-font-family-base: sans-serif;
-  --ifm-heading-font-family: sans-serif;
-  --ifm-heading-font-weight: normal;
-  --ifm-heading-color: #000;
-
-  --ifm-background-color: #f9f9f9;
-  --ifm-navbar-background-color: #f9f9f9;
-  --ifm-footer-background-color: #fff;
-
-  --ifm-menu-color: #002bb8;
-  --ifm-menu-color-active: #002bb8;
-  --ifm-menu-color-background-active: transparent;
-
-  --ifm-toc-border-color: #aaa;
-  --ifm-table-border-color: #aaa;
-  --ifm-hr-border-color: #aaa;
-
-  --ifm-color-emphasis-300: #aaa;
-
-  /*  accent colour (golden yellow from Monobook tabs/footer) */
-  --vfx-accent: #fabd23;
-  --vfx-border: #aaa;
-  --vfx-bg-light: #f9f9f9;
-  --vfx-bg-white: #fff;
-  --vfx-link-visited: #faa700;
-  --vfx-link-active: #faa700;
-  --vfx-external: #36b;
+  /* Card / panel colour — single knob. The dark value is set below. */
+  --sp-card-bg: #ffffff;
+  --ifm-background-surface-color: var(--sp-card-bg);
 }
 
-/* ---- Dark Mode ---- */
-[data-theme='dark'] {
-  --ifm-color-primary: #6b9aff;
-  --ifm-color-primary-dark: #4a82ff;
-  --ifm-color-primary-darker: #2970ff;
-  --ifm-color-primary-darkest: #0055e6;
-  --ifm-color-primary-light: #8cb2ff;
-  --ifm-color-primary-lighter: #adc9ff;
-  --ifm-color-primary-lightest: #cee0ff;
-
-  --ifm-link-color: #6b9aff;
-  --ifm-link-hover-color: #6b9aff;
-  --ifm-background-color: #1b1b1d;
-  --ifm-navbar-background-color: #1b1b1d;
-  --ifm-footer-background-color: #1b1b1d;
-  --ifm-heading-color: #e3e3e3;
-  --ifm-menu-color: #6b9aff;
-  --ifm-menu-color-active: #8cb2ff;
-  --ifm-toc-border-color: #444;
-  --ifm-table-border-color: #444;
-  --ifm-hr-border-color: #444;
-  --ifm-color-emphasis-300: #444;
-
-  --vfx-border: #444;
-  --vfx-bg-light: #252527;
-  --vfx-bg-white: #1e1e20;
-  --vfx-link-visited: #ffb347;
-  --vfx-link-active: #ffb347;
-  --vfx-external: #6b9aff;
+/* Two-tone brand wordmark — "Swift" in gold, "pedia" in plain ink. Used by the
+ * navbar brand (src/theme/Logo) and the homepage H1. */
+.brand-gold {
+  color: var(--sp-gold);
 }
 
-/* ---- Global Styles ---- */
+.brand-plain {
+  color: #1c1e21;
+}
+
+[data-theme='dark'] .brand-plain {
+  color: #ffffff;
+}
+
+/* ── Light theme: clean slate with a vibrant indigo accent ──────────────── */
+:root {
+  --ifm-color-primary: #4f46e5;
+  --ifm-color-primary-dark: #4338ca;
+  --ifm-color-primary-darker: #3730a3;
+  --ifm-color-primary-darkest: #312e81;
+  --ifm-color-primary-light: #6366f1;
+  --ifm-color-primary-lighter: #818cf8;
+  --ifm-color-primary-lightest: #a5b4fc;
+  --ifm-background-color: #ffffff;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  --ifm-footer-background-color: #05070b; /* fallback only — live value is on .footer--dark */
+  --ifm-toc-border-color: #e2e8f0;
+  --ifm-code-background: #f1f5f9;
+  --docusaurus-highlighted-code-line-bg: rgba(79, 70, 229, 0.08);
+}
+
+/* ── Dark theme: deep space with a gold accent ──────────────────────────────
+ * SELECTOR MUST KEEP THE `html` PREFIX: Infima declares its dark scale on
+ * `html[data-theme=dark]`, which would otherwise out-specify a bare
+ * `[data-theme='dark']` and leave the emphasis scale, surfaces, hover overlay,
+ * code background and TOC border on Infima's grey defaults.
+ */
+html[data-theme='dark'] {
+  --ifm-color-primary: #ffcb6b;
+  --ifm-color-primary-dark: #e6c700;
+  --ifm-color-primary-darker: #d9bc00;
+  --ifm-color-primary-darkest: #b39b00;
+  --ifm-color-primary-light: #ffe01a;
+  --ifm-color-primary-lighter: #ffe226;
+  --ifm-color-primary-lightest: #ffe74d;
+
+  --ifm-background-color: #131820;
+  --sp-card-bg: #0c0f14;
+  --ifm-background-surface-color: var(--sp-card-bg);
+
+  --ifm-navbar-background-color: rgba(19, 24, 32, 0.85);
+  --ifm-footer-background-color: #05070b; /* fallback only — live value is on .footer--dark */
+  --ifm-dropdown-background-color: #131820;
+  --ifm-card-background-color: #131820;
+  --ifm-code-background: #1a202c;
+  --ifm-color-emphasis-0: #090c10;
+  --ifm-color-emphasis-100: #131820;
+  --ifm-color-emphasis-200: #1e293b;
+  --ifm-color-emphasis-300: #2d3748;
+  --ifm-color-emphasis-400: #4a5568;
+  --ifm-color-emphasis-500: #64748b;
+  --ifm-color-emphasis-600: #94a3b8;
+  --ifm-color-emphasis-700: #cbd5e1;
+  --ifm-color-emphasis-800: #e2e8f0;
+  --ifm-color-emphasis-900: #f1f5f9;
+  --ifm-color-emphasis-1000: #f8fafc;
+  --ifm-font-color-base: #e2e8f0;
+  --ifm-heading-color: #f1f5f9;
+  --ifm-menu-color: #94a3b8;
+  --ifm-toc-link-color: #94a3b8;
+  --ifm-toc-border-color: #1e293b;
+  --ifm-link-color: var(--sp-gold);
+  --ifm-link-hover-color: #ffe0a3;
+  --ifm-breadcrumb-color-active: var(--sp-gold);
+  --ifm-menu-color-active: #f1f5f9;
+  --ifm-hover-overlay: rgba(255, 203, 107, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 203, 107, 0.15);
+  --docsearch-searchbox-background: #131820;
+  --docsearch-footer-background: #131820;
+  --docsearch-modal-background: #090c10;
+}
+
+/* ── Heading typography ────────────────────────────────────────────────────
+ * One family, one weight, one accent colour, so hierarchy is carried by size
+ * alone — no display flourishes, nothing extra to load.
+ * `h1[class^='title_']` is the generated-index page title, which lives in a
+ * <header> rather than an <article>, so it needs the same rule to match the
+ * markdown H1 styling. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1[class^='title_'] {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+}
+
+/* Page titles sit one step heavier than section headings. */
+h1,
+h1[class^='title_'] {
+  font-weight: 600;
+}
+
+article h1,
+h1[class^='title_'] {
+  font-size: 33px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+article h2 {
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+article h3 {
+  line-height: 1.2;
+}
+
+/* ── Base text ───────────────────────────────────────────────────────────── */
 body {
-  background: var(--ifm-background-color);
-  color: #000;
-  font-size: 14px;
+  font-size: 16px;
 }
 
-[data-theme='dark'] body {
-  color: #e3e3e3;
-}
-
-a {
-  color: var(--ifm-link-color);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-a:visited {
-  color: var(--vfx-link-visited);
-}
-a:active {
-  color: var(--vfx-link-active);
-}
-
-/* ---- Headings ---- */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--ifm-heading-color);
-  font-weight: var(--ifm-heading-font-weight);
-  border-bottom: 1px solid var(--vfx-border);
-  padding-bottom: 0.17em;
-  margin-top: 0;
-}
-h1 { font-size: 188%; }
-h2 { font-size: 150%; }
-h3, h4, h5, h6 {
-  border-bottom: none;
-  font-weight: bold;
-}
-h3 { font-size: 132%; }
-h4 { font-size: 116%; }
-h5 { font-size: 100%; }
-h6 { font-size: 80%; }
-
-/* ---- Navbar ---- */
+/* ── Navbar: glassy + blurred, with a gold under-glow in dark mode ──────── */
 .navbar {
-  border-bottom: 1px solid var(--vfx-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme='dark'] .navbar {
+  border-bottom: 1px solid #1e293b;
   box-shadow: none;
 }
-.navbar__link {
-  color: var(--ifm-link-color);
-  font-size: 95%;
-}
-.navbar__link:hover {
-  text-decoration: underline;
-  color: var(--ifm-link-color);
-}
-.navbar__link--active {
-  font-weight: bold;
+
+[data-theme='dark'] .navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ifm-color-primary), transparent);
+  opacity: 0.3;
 }
 
-/* ---- Sidebar (DocSidebar) ---- */
-.menu {
-  font-size: 95%;
-  padding: 0.5em 0.8em 0.3em 0.5em;
-}
-.menu__link {
-  color: var(--ifm-menu-color);
-  line-height: 1.5em;
-}
-.menu__link:hover {
-  text-decoration: underline;
-  color: var(--ifm-menu-color);
-}
-.menu__link--active {
-  font-weight: bold;
-  color: var(--ifm-menu-color);
-}
-.menu__list-item {
-  margin-bottom: 0.1em;
+/* ── Sidebar / table of contents ────────────────────────────────────────── */
+[data-theme='dark'] .menu__link--active {
+  background: rgba(129, 140, 248, 0.12);
+  border-right: 2px solid var(--ifm-color-primary);
 }
 
-/* ---- Table of Contents (right sidebar) ---- */
-.table-of-contents {
-  font-size: 95%;
-  border-left: 1px solid var(--ifm-toc-border-color);
-}
-.table-of-contents__link {
-  color: var(--ifm-link-color);
-}
-.table-of-contents__link:hover {
-  text-decoration: underline;
-}
-.table-of-contents__link--active {
-  font-weight: bold;
+[data-theme='dark'] .menu__link--sublist {
+  color: #94a3b8;
 }
 
-/* ---- Main Content Area ---- */
-.theme-doc-markdown {
-  line-height: 1.5em;
+[data-theme='dark'] .table-of-contents__link--active {
+  color: #e2e8f0;
 }
+
+/* ── Footer ────────────────────────────────────────────────────────────────
+ * docusaurus.config.js sets `footer.style: 'dark'`, which puts `footer--dark`
+ * on the <footer> element — Infima declares the colour right there, so this is
+ * the declaration that actually carries the value. */
+.footer--dark {
+  --ifm-footer-background-color: #05070b;
+}
+
+/* Footer type scale — hierarchy through size as well as weight. */
+.footer__title {
+  font-size: 0.95rem;
+}
+
+.footer__link-item {
+  font-size: 0.85rem;
+}
+
+.footer__bottom {
+  font-size: 0.8rem;
+}
+
+[data-theme='dark'] .footer {
+  border-top: 1px solid #1e293b;
+}
+
+/* ── Links: underline grows in on hover, in article body only ───────────── */
+article a:not(.menu__link):not(.toc__link) {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.2s ease;
+}
+
+article a:not(.menu__link):not(.toc__link):hover {
+  background-size: 100% 1px;
+}
+
+/* ── Code ────────────────────────────────────────────────────────────────── */
+[data-theme='dark'] pre {
+  border: 1px solid #1e293b;
+}
+
+/* ── Mermaid diagrams ────────────────────────────────────────────────────── */
+.docusaurus-mermaid-container {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.docusaurus-mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+[data-theme='dark'] .docusaurus-mermaid-container .node .label {
+  color: #1e293b !important;
+}
+
+/* ── Collapsible details / info panels ──────────────────────────────────── */
+[data-theme='dark'] details.alert--info {
+  --ifm-alert-background-color: rgba(25, 60, 71, 0.4);
+  --ifm-alert-border-color: rgba(76, 179, 212, 0.4);
+}
+
+/* ── Breadcrumbs ────────────────────────────────────────────────────────── */
+.breadcrumbs {
+  margin-bottom: 40px;
+  padding-left: 0;
+}
+
+.theme-doc-breadcrumbs .breadcrumbs__link,
+.breadcrumbs__link {
+  border-radius: var(--ifm-global-radius);
+}
+
+/* ── Cards ────────────────────────────────────────────────────────────────
+ * Shared card treatment for the homepage grid, ported `.cat-card` usage, and
+ * (via the `.card` rules below) Docusaurus's default doc cards. */
+.cat-cards,
+.vfx-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cat-card,
+.vfx-section-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  background: var(--sp-card-bg);
+  text-decoration: none !important;
+  color: var(--ifm-font-color-base);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cat-card:hover,
+.vfx-section-card:hover {
+  border-color: var(--ifm-color-emphasis-400);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+/* Dark mode: outline the hovered card in the gold accent. */
+[data-theme='dark'] .cat-card:hover,
+[data-theme='dark'] .vfx-section-card:hover {
+  border-color: var(--sp-gold);
+}
+
+/* Dark mode: resting outline painted in the page background so cards read flat. */
+[data-theme='dark'] .cat-card,
+[data-theme='dark'] .vfx-section-card {
+  border-color: var(--ifm-background-color);
+}
+
+.cat-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--ifm-global-radius);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--ifm-color-emphasis-500);
+}
+
+.cat-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cat-card-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.cat-card-count {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.cat-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Default Docusaurus doc card (generated-index pages) — match the look above. */
+.card {
+  border-radius: var(--ifm-global-radius);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-emphasis-400);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme='dark'] .card {
+  border-color: var(--ifm-background-color);
+}
+
+[data-theme='dark'] .card:hover {
+  border-color: var(--sp-gold);
+}
+
+/* ── Doc images ────────────────────────────────────────────────────────────
+ * Docusaurus writes each image's pixel dimensions onto the rendered <img>.
+ * Infima only sets max-width: 100%, so the width clamps to the article column
+ * while the height attribute is kept — which vertically stretches wide
+ * screenshots. height:auto restores the aspect ratio, and the 700px cap keeps
+ * Retina-sized screenshots from dominating the page. */
 .theme-doc-markdown img {
   display: block;
   height: auto;
   margin: 1em auto;
   max-width: min(100%, 700px);
 }
-.theme-doc-markdown p {
-  margin: 0.4em 0 0.5em 0;
-  line-height: 1.5em;
-}
-.theme-doc-markdown ul {
-  line-height: 1.5em;
-  list-style-type: square;
-  margin: 0.3em 0 0 1.5em;
-  padding: 0;
-}
-.theme-doc-markdown ol {
-  line-height: 1.5em;
-  margin: 0.3em 0 0 3.2em;
-}
-.theme-doc-markdown li {
-  margin-bottom: 0.1em;
-}
-.theme-doc-markdown dt {
-  font-weight: bold;
-  margin-bottom: 0.1em;
-}
-.theme-doc-markdown dl {
-  margin-top: 0.2em;
-  margin-bottom: 0.5em;
-}
-.theme-doc-markdown dd {
-  line-height: 1.5em;
-  margin-left: 2em;
-  margin-bottom: 0.1em;
+
+/* ── Tables ────────────────────────────────────────────────────────────────
+ * Row-only dividers, a quiet eyebrow-style header and a zebra stripe, replacing
+ * Infima's dense bordered grid. Native table layout is kept (no CSS-grid
+ * rewrite) so tables of any column count stay correct. */
+.markdown table {
+  font-size: 0.92rem;
+  margin-bottom: 2rem;
 }
 
-/* ---- Tables ---- */
-table {
-  font-size: 100%;
-  color: #000;
-  background-color: var(--vfx-bg-white);
-}
-[data-theme='dark'] table {
-  color: #e3e3e3;
+.markdown table th,
+.markdown table td {
+  border: none;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  padding: 0.65rem 1rem;
 }
 
-/* ---- Code Blocks ---- */
-code {
-  background-color: var(--vfx-bg-light);
-}
-pre {
-  padding: 1em;
-  border: 1px dashed #2f6fab;
-  color: #000;
-  background-color: var(--vfx-bg-light);
-  line-height: 1.3em;
-  border-radius: 0;
-}
-[data-theme='dark'] pre {
-  color: #e3e3e3;
-  border-color: #2f6fab;
+.markdown table th {
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+  background-color: var(--ifm-color-emphasis-100);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
 }
 
-/* ---- Footer ---- */
-.footer {
-  background-color: var(--ifm-footer-background-color);
-  border-top: 1px solid var(--vfx-accent);
-  border-bottom: 1px solid var(--vfx-accent);
-  font-size: 90%;
-  text-align: center;
-  padding: 0.4em 0 1.2em 0;
-  margin: 0.6em 0 1em 0;
-}
-.footer__links {
-  margin-bottom: 0;
-}
-.footer__col {
-  text-align: center;
-}
-.footer__item {
-  display: inline;
-  margin: 0 1.3em;
-}
-.footer__link-item {
-  color: var(--ifm-link-color);
-}
-.footer__link-item:hover {
-  text-decoration: underline;
+.markdown table tbody tr:nth-child(2n) > td {
+  background-color: var(--ifm-color-emphasis-100);
 }
 
-/* ---- Admonitions (Infobox replacements) ---- */
-.admonition {
-  border: 1px solid var(--vfx-border);
-  background-color: var(--vfx-bg-light);
-  font-size: 95%;
-  box-shadow: none;
-}
-.admonition-heading h5 {
+.markdown table tr:last-child > td {
   border-bottom: none;
-  font-weight: bold;
 }
 
-/* ---- Category / Tag Index Links ---- */
-.doc_index {
-  background-color: rgb(175, 180, 184);
-  border: 1px solid #000;
-  padding: 0;
-  text-align: center;
-  margin: 1em 0;
+.markdown table td code {
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.82rem;
 }
+
+/* ── Swiftpedia doc components ─────────────────────────────────────────────
+ * Restyled from the original Monobook treatment (square, blue/yellow) to the
+ * shared rounded, tinted look. Markup unchanged. */
+.doc_header {
+  background-color: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.doc_title {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  font-size: 33px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+  border-bottom: none;
+}
+
+.doc_note,
+.doc_warn {
+  position: relative;
+  min-height: 2rem;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  margin: 1rem 0;
+}
+
+.doc_note::before {
+  content: "\2139\FE0F";
+  position: absolute;
+  left: 0.85rem;
+  top: 0.7rem;
+  font-size: 1.1em;
+}
+
+.doc_warn::before {
+  content: "\26A0\FE0F";
+  position: absolute;
+  left: 0.85rem;
+  top: 0.7rem;
+  font-size: 1.1em;
+}
+
+.doc_index {
+  background: var(--sp-card-bg);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+
 .doc_index ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .doc_index li {
   display: inline;
-  padding: 2px;
+  margin-right: 1rem;
   font-size: 90%;
 }
+
 .doc_index a {
-  background-color: rgb(175, 180, 184);
-  padding: 4px 4px;
-  border-radius: 2px;
-  text-decoration: none;
-  line-height: 2;
-  color: var(--ifm-link-color);
-}
-.doc_index a:hover {
-  background-color: rgb(220, 221, 236);
   text-decoration: none;
 }
-[data-theme='dark'] .doc_index {
-  background-color: #3a3a3d;
-  border-color: #666;
-}
-[data-theme='dark'] .doc_index a {
-  background-color: #3a3a3d;
-  color: var(--ifm-link-color);
-}
-[data-theme='dark'] .doc_index a:hover {
-  background-color: #555;
-}
 
-/* ---- Doc Header (yellow title box) ---- */
-.doc_header {
-  background-color: rgb(255, 199, 38);
-  border: 1px solid #000;
-  padding: 5px;
-  margin-bottom: 1em;
-}
-[data-theme='dark'] .doc_header {
-  background-color: #8a6a10;
-  border-color: #666;
-}
-
-/* ---- Doc Title ---- */
-.doc_title {
-  color: #000;
-  font-weight: normal;
-  font-size: 188%;
-  padding: 0;
-  margin: 0;
-  border-bottom: none;
-}
-
-/* ---- Doc Note (blue info box) ---- */
-.doc_note {
-  background: rgb(95%, 95%, 100%);
-  border: 1px solid var(--vfx-border);
-  padding: 0.5em 1em 0.5em 35px;
-  margin: 1em;
-  position: relative;
-  min-height: 2em;
-}
-.doc_note::before {
-  content: "\2139\FE0F";
-  position: absolute;
-  left: 10px;
-  top: 0.5em;
-  font-size: 1.2em;
-}
-[data-theme='dark'] .doc_note {
-  background: rgb(20%, 25%, 40%);
-}
-
-/* ---- Doc Warn (yellow warning box) ---- */
-.doc_warn {
-  background: rgb(100%, 100%, 90%);
-  border: 1px solid var(--vfx-border);
-  padding: 0.5em 1em 0.5em 35px;
-  margin: 1em;
-  position: relative;
-  min-height: 2em;
-}
-.doc_warn::before {
-  content: "\26A0\FE0F";
-  position: absolute;
-  left: 10px;
-  top: 0.5em;
-  font-size: 1.2em;
-}
-[data-theme='dark'] .doc_warn {
-  background: rgb(40%, 35%, 10%);
-}
-
-/* ---- Inline Doc Styles ---- */
-.doc_menu {
+/* Inline doc styles */
+.doc_menu,
+.doc_context,
+.doc_pref {
   font-style: italic;
   display: inline;
 }
-.doc_context {
-  font-style: italic;
-  display: inline;
-}
+
 .doc_key {
   font-weight: bold;
   display: inline;
 }
+
 .doc_tool {
   font-variant: small-caps;
   text-transform: lowercase;
   display: inline;
 }
+
 .doc_control {
   font-variant: small-caps;
   text-transform: uppercase;
   display: inline;
 }
-.doc_pref {
-  font-style: italic;
-  display: inline;
-}
+
 .doc_path {
   display: inline;
-  font-family: courier, serif;
+  font-family: var(--ifm-font-family-monospace);
 }
 
-/* ---- Main Page Specific ---- */
+/* ── Legacy main-page wrapper ───────────────────────────────────────────── */
 .popcorn-mainpage {
   max-width: 75%;
   margin: 0 auto;
 }
+
 .popcorn-mainpage h3 {
-  border-bottom: none;
-  font-weight: bold;
-  font-size: 132%;
   margin-bottom: 0.3em;
 }
+
 .popcorn-mainpage .category-section {
   vertical-align: top;
   padding: 0 1em;
 }
+
 .popcorn-mainpage .category-section ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .popcorn-mainpage .category-section li {
   margin-bottom: 0.1em;
 }
-.popcorn-mainpage .category-section a {
-  color: var(--ifm-link-color);
-  text-decoration: none;
-}
-.popcorn-mainpage .category-section a:hover {
-  text-decoration: underline;
-}
+
 .popcorn-mainpage .section-heading-img {
   display: block;
   margin-bottom: 0.5em;
 }
+
 .popcorn-mainpage .main-banner-img {
   display: block;
   margin: 1em auto;
   max-width: 100%;
 }
 
-/* ---- Print Styles ---- */
+/* ── Homepage (src/pages/index.js) ──────────────────────────────────────── */
+.vfx-main-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.vfx-hero {
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.vfx-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-color-emphasis-100);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1.25rem;
+}
+
+.vfx-hero-title {
+  font-size: 3.25rem;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+
+.vfx-hero-sub {
+  font-size: 1.35rem;
+  line-height: 1.35;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1.75rem;
+}
+
+.vfx-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.vfx-sections-grid {
+  margin: 2.5rem 0 3rem;
+}
+
+.vfx-section-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.vfx-section-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vfx-section-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+/* ── Print ──────────────────────────────────────────────────────────────── */
 @media print {
-  .navbar, .menu, .table-of-contents, .footer {
+  .navbar,
+  .menu,
+  .table-of-contents,
+  .footer {
     display: none;
   }
 }

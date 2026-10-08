@@ -1,10 +1,9 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import Heading from '@theme/Heading';
 
 const sections = [
-
   {
     title: 'Swift Resources',
     links: [
@@ -20,15 +19,29 @@ export default function Home() {
       title="Swiftpedia"
       description="A local knowledge base for Swift 6 + Swift UI development">
       <main className="vfx-main-page">
-        <div className="vfx-hero">
-          <h1>Welcome to Swiftpedia</h1>
-          <p>A local knowledge base for Swift 6 + Swift UI development</p>
-        </div>
+        <header className="vfx-hero">
+          <span className="vfx-badge">Swift 6 · SwiftUI</span>
+          <Heading as="h1" className="vfx-hero-title">
+            <span className="brand-gold">Swift</span>
+            <span className="brand-plain">pedia</span>
+          </Heading>
+          <p className="vfx-hero-sub">
+            A local knowledge base for Swift 6 + Swift UI development
+          </p>
+          <div className="vfx-btn-row">
+            <Link className="button button--primary button--lg" to="/docs/about">
+              Browse the Wiki
+            </Link>
+            <Link className="button button--secondary button--lg" to="/docs/xcode/">
+              Swift &amp; Xcode
+            </Link>
+          </div>
+        </header>
         <div className="vfx-sections-grid">
           {sections.map((section, idx) => (
             <div key={idx} className="vfx-section-card">
-              <img src={useBaseUrl(section.image)} alt={section.title} className="vfx-section-icon" />
-              <ul>
+              <h3 className="vfx-section-title">{section.title}</h3>
+              <ul className="vfx-section-links">
                 {section.links.map((link, i) => (
                   <li key={i}>
                     {link.href.startsWith('http') ? (
